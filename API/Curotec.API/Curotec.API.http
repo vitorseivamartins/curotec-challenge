@@ -1,0 +1,6 @@
+@Curotec.API_HostAddress = http://localhost:5022
+
+GET {{Curotec.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
