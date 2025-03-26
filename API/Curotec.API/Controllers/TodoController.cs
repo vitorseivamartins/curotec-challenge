@@ -1,9 +1,12 @@
 using Curotec.Application.DTOs;
 using Curotec.Application.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Curotec.API.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [ApiController]
     [Route("api/[controller]")]
     public class TodoController : ControllerBase
@@ -39,26 +42,6 @@ namespace Curotec.API.Controllers
         {
             var createdTodo = await _todoService.CreateTodoAsync(createTodoDto, cancellationToken);
             return CreatedAtAction(nameof(GetTodoById), new { id = createdTodo.Id }, createdTodo);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<ActionResult<TodoDto>> UpdateTodo(Guid id, CreateTodoDto updateTodoDto, CancellationToken cancellationToken)
-        {
-            var updatedTodo = await _todoService.UpdateTodoAsync(id, updateTodoDto, cancellationToken);
-            if (updatedTodo == null)
-                return NotFound();
-
-            return Ok(updatedTodo);
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteTodo(Guid id, CancellationToken cancellationToken)
-        {
-            var result = await _todoService.DeleteTodoAsync(id, cancellationToken);
-            if (!result)
-                return NotFound();
-
-            return NoContent();
         }
     }
 } 

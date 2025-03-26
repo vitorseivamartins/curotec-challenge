@@ -45,6 +45,7 @@ namespace Curotec.Application.Services
             {
                 Id = Guid.NewGuid(),
                 Name = createTodoDto.Name,
+                UserId = createTodoDto.UserId,
                 Items = createTodoDto.Items.Select(item => new TodoItem
                 {
                     Id = Guid.NewGuid(),
@@ -67,6 +68,7 @@ namespace Curotec.Application.Services
             {
                 Id = existingTodo.Id,
                 Name = updateTodoDto.Name,
+                UserId = updateTodoDto.UserId,
                 Items = updateTodoDto.Items.Select(item => new TodoItem
                 {
                     Id = Guid.NewGuid(),

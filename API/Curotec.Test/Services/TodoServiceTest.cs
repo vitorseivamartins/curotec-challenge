@@ -1,16 +1,12 @@
 ﻿using Curotec.Application.DTOs;
 using Curotec.Application.Services;
-using Curotec.Application.Validators;
 using Curotec.Domain.Entities;
 using Curotec.Infrastructure.Repositories;
-using FluentAssertions;
 using FluentValidation;
 using Microsoft.EntityFrameworkCore.Query;
-using Moq;
 using System.Linq.Expressions;
-using Xunit;
 
-namespace Curotec.Application.Tests.Services
+namespace Curotec.Tests.Services
 {
     public class TodoServiceTests
     {
