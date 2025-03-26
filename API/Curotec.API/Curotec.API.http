@@ -1,6 +1,30 @@
-@Curotec.API_HostAddress = http://localhost:5022
+@Curotec.API_HostAddress = https://localhost:7001
 
-GET {{Curotec.API_HostAddress}}/weatherforecast/
-Accept: application/json
+### Get all todos
+GET {{Curotec.API_HostAddress}}/api/todo
 
-###
+### Get todo by id
+GET {{Curotec.API_HostAddress}}/api/todo/{{id}}
+
+### Create todo
+POST {{Curotec.API_HostAddress}}/api/todo
+Content-Type: application/json
+
+{
+  "description": "New Todo",
+  "isCompleted": false,
+  "items": []
+}
+
+### Update todo
+PUT {{Curotec.API_HostAddress}}/api/todo/{{id}}
+Content-Type: application/json
+
+{
+  "description": "Updated Todo",
+  "isCompleted": true,
+  "items": []
+}
+
+### Delete todo
+DELETE {{Curotec.API_HostAddress}}/api/todo/{{id}}

@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34511.84
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Curotec.API", "Curotec.API\Curotec.API.csproj", "{B4BA42FB-05F2-49BF-85FE-37B7D5DA19C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Curotec.WebApi", "Curotec.API\Curotec.WebApi.csproj", "{B4BA42FB-05F2-49BF-85FE-37B7D5DA19C2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Curotec.Infrastructure", "Curotec.Infrastructure\Curotec.Infrastructure.csproj", "{A8FD86C8-D149-4962-A01C-F5AFF5FA33CC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Curotec.Domain", "Curotec.Domain\Curotec.Domain.csproj", "{A04CF65A-9099-4A2F-9CFD-38E86596B83C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Curotec.Application", "Curotec.Application\Curotec.Application.csproj", "{EA1D3EB8-571A-432B-A0B1-1C87E9B65EA8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{EEDA58D5-34B3-4F3C-B0AC-66BAA3AF6570}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Curotec.Test", "Curotec.Test\Curotec.Test.csproj", "{739BAEF2-87BD-4A79-BB7C-13C58D04039D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +25,28 @@ Global
 		{B4BA42FB-05F2-49BF-85FE-37B7D5DA19C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4BA42FB-05F2-49BF-85FE-37B7D5DA19C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4BA42FB-05F2-49BF-85FE-37B7D5DA19C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8FD86C8-D149-4962-A01C-F5AFF5FA33CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8FD86C8-D149-4962-A01C-F5AFF5FA33CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8FD86C8-D149-4962-A01C-F5AFF5FA33CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8FD86C8-D149-4962-A01C-F5AFF5FA33CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A04CF65A-9099-4A2F-9CFD-38E86596B83C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A04CF65A-9099-4A2F-9CFD-38E86596B83C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A04CF65A-9099-4A2F-9CFD-38E86596B83C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A04CF65A-9099-4A2F-9CFD-38E86596B83C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EA1D3EB8-571A-432B-A0B1-1C87E9B65EA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA1D3EB8-571A-432B-A0B1-1C87E9B65EA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA1D3EB8-571A-432B-A0B1-1C87E9B65EA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA1D3EB8-571A-432B-A0B1-1C87E9B65EA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{739BAEF2-87BD-4A79-BB7C-13C58D04039D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{739BAEF2-87BD-4A79-BB7C-13C58D04039D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{739BAEF2-87BD-4A79-BB7C-13C58D04039D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{739BAEF2-87BD-4A79-BB7C-13C58D04039D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{739BAEF2-87BD-4A79-BB7C-13C58D04039D} = {EEDA58D5-34B3-4F3C-B0AC-66BAA3AF6570}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {87B43293-5E11-4840-BD6A-BBE7BC3E174D}
