@@ -45,7 +45,6 @@ The application will:
     Create the database
     Seed initial user data
 
-
 ### Missing features / Room to improvements
 
 Due to time constraints, these areas could be enhanced:
@@ -58,7 +57,15 @@ Due to time constraints, these areas could be enhanced:
   - Implement `offset/limit` pagination for performance improvement on endpoints
 
 
+### Screenshots
 
+![image](https://github.com/user-attachments/assets/5016db64-bdef-430d-98f3-bca20b5fc056)
+
+
+![image](https://github.com/user-attachments/assets/5e4f60c5-08bb-41ac-850e-60425db0be02)
+
+
+![image](https://github.com/user-attachments/assets/a5b01e90-0d00-44ea-bc80-88d36d959069)
 
 
 
