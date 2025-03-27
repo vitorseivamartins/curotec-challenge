@@ -63,7 +63,7 @@ public class ApplicationDbContext : DbContext
                 Id = Guid.NewGuid(),
                 Name = "John Doe",
                 Email = "johndoe@example.com",
-                PasswordHash = "hashed_password"
+                PasswordHash = "$2a$11$bDMp5eKT9zSKvW0sRGfShOF3sWyDdVGy0.BhnCNogQXxFQApnPqk6"
             }
         );
 

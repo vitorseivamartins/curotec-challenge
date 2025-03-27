@@ -22,6 +22,9 @@ namespace Curotec.API
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(builder.Configuration.GetSection("ConnectionStrings:Database").Value)
                );
+            builder.Services.BuildServiceProvider().GetService<ApplicationDbContext>()
+                .Database
+                .EnsureCreated();
 
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IBaseRepository<TodoList>, BaseRepository<TodoList>>();
