@@ -3,7 +3,7 @@ using Curotec.Application.Services;
 using Curotec.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UserCreation.API.Controllers
+namespace Curotec.API.Controllers
 {
     [ApiController()]
     [Route("api/user")]
