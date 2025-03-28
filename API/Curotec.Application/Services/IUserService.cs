@@ -8,6 +8,6 @@ namespace Curotec.Application.Services
     {
         public Task<ActionResult<User>> CreateUser(UserDto userToBeCreated, CancellationToken cancellationToken = default);
 
-        public Task<ActionResult<string>> LoginUser(UserDto user, CancellationToken cancellationToken = default);
+        public Task<ActionResult<LoginResponse>> LoginUser(UserDto user, CancellationToken cancellationToken = default);
     }
 }

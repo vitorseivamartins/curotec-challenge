@@ -1,0 +1,13 @@
+<mat-card class="todo-list-card">
+  <mat-card-content>
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>List Name</mat-label>
+      <input 
+        matInput 
+        [(ngModel)]="name" 
+        (ngModelChange)="onNameChange($event)"
+        [disabled]="!isEditing"
+        placeholder="Enter list name">
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>

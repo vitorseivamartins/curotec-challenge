@@ -44,10 +44,6 @@ public class ApplicationDbContext : DbContext
             entity.HasKey(u => u.Id);
             entity.Property(u => u.Id).ValueGeneratedOnAdd().IsRequired();
 
-            entity.Property(u => u.Name)
-                  .IsRequired()
-                  .HasMaxLength(250);
-
             entity.Property(u => u.Email)
                   .IsRequired()
                   .HasMaxLength(250);
@@ -61,7 +57,6 @@ public class ApplicationDbContext : DbContext
             new
             {
                 Id = Guid.NewGuid(),
-                Name = "John Doe",
                 Email = "johndoe@example.com",
                 PasswordHash = "$2a$11$bDMp5eKT9zSKvW0sRGfShOF3sWyDdVGy0.BhnCNogQXxFQApnPqk6"
             }

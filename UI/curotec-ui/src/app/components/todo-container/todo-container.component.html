@@ -1,0 +1,52 @@
+<div class="todo-container">
+    <div *ngFor="let list of todoLists" class="list-container">
+      <div class="list-header" (click)="toggleList(list)">
+        <app-todo-list 
+          [name]="list.name" 
+          [isEditing]="list.isEditing"
+          (nameChange)="list.name = $event"
+          (save)="saveList(list)">
+        </app-todo-list>
+        
+        @if (!list.id) {
+            <button mat-icon-button (click)="addNewItem(list); $event.stopPropagation()">
+            <mat-icon>add</mat-icon>
+            </button>
+        }
+      </div>
+  
+      @if (list.expanded) {
+        <div class="items-container">
+          <app-todo-item 
+            *ngFor="let item of list.items"
+            [description]="item.description"
+            [isCompleted]="item.isCompleted"
+            [isEditing]="item.isEditing"
+            (descriptionChange)="item.description = $event"
+            (completedChange)="item.isCompleted = $event"
+            (save)="saveItem(item)">
+          </app-todo-item>
+
+          @if (!list.id) {
+            <button mat-raised-button color="primary" (click)="saveList(list)">
+                Save
+            </button>
+          }
+        </div>
+      }
+    </div>
+  
+    <div class="new-list-container">
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>New List Name</mat-label>
+        <input 
+          matInput 
+          [(ngModel)]="newListName" 
+          placeholder="Enter new list name"
+          (keyup.enter)="addNewList()">
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="addNewList()">
+        Add List
+      </button>
+    </div>
+</div>

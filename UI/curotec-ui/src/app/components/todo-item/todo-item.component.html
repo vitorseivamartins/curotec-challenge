@@ -1,0 +1,21 @@
+<mat-card class="todo-item-card">
+  <mat-card-content>
+    <div class="item-row">
+      <mat-checkbox 
+        [(ngModel)]="isCompleted"
+        (change)="onCompletedChange($event.checked)"
+        [disabled]="isEditing">
+      </mat-checkbox>
+      
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Task Description</mat-label>
+        <input 
+          matInput 
+          [(ngModel)]="description" 
+          (ngModelChange)="onDescriptionChange($event)"
+          [disabled]="!isEditing"
+          placeholder="Enter task description">
+      </mat-form-field>
+    </div>
+  </mat-card-content>
+</mat-card>

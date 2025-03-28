@@ -1,0 +1,9 @@
+@use '@angular/material' as mat;
+
+.todo-list-card {
+  margin-bottom: 1rem;
+  
+  .full-width {
+    width: 100%;
+  }
+}

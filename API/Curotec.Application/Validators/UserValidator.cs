@@ -7,7 +7,6 @@ namespace Curotec.Application.Validations
     {
         public UserValidator()
         {
-            RuleFor(x => x.Name).NotEmpty().WithMessage("Username can't be empty.");
             RuleFor(x => x.Email).NotEmpty().WithMessage("Email can't be empty.");
             RuleFor(x => x.Email).EmailAddress().WithMessage("Email is in invalid format");
             RuleFor(x => x.Password).NotEmpty().WithMessage("Password can't be empty.");

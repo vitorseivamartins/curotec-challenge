@@ -22,9 +22,10 @@ namespace Curotec.API.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<string>> Login(UserDto request, CancellationToken cancellationToken)
+        public async Task<ActionResult<LoginResponse>> Login(UserDto request, CancellationToken cancellationToken)
         {
-            return await _userService.LoginUser(request, cancellationToken);
+            var response = await _userService.LoginUser(request, cancellationToken);
+            return response;
         }
     }
 }

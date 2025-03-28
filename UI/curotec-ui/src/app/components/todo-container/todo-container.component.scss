@@ -1,0 +1,42 @@
+// todo-container.component.scss
+@use '@angular/material' as mat;
+
+.todo-container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+
+  .list-container {
+    margin-bottom: 1rem;
+    border: 1px solid mat.get-color-from-palette(mat.$gray-palette, 300);
+    border-radius: 4px;
+    overflow: hidden;
+
+    .list-header {
+      display: flex;
+      align-items: center;
+      padding: 0.5rem;
+      cursor: pointer;
+      background-color: mat.get-color-from-palette(mat.$gray-palette, 100);
+      
+      app-todo-list {
+        flex-grow: 1;
+      }
+    }
+
+    .items-container {
+      padding: 0.5rem;
+      background-color: white;
+    }
+  }
+
+  .new-list-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+
+    .full-width {
+      flex-grow: 1;
+    }
+  }
+}

@@ -28,9 +28,6 @@ namespace Curotec.Application.Services
                 throw new ValidationException(validationResult.Errors);
             }
 
-            if (await userToBeCreated.IsUsernameAlreadyTaken(_userRepository))
-                return new BadRequestObjectResult("Username already taken!");
-
             if (await userToBeCreated.IsEmailAlreadyTaken(_userRepository))
                 return new BadRequestObjectResult("Email already taken!");
 
@@ -39,7 +36,6 @@ namespace Curotec.Application.Services
 
             var newUser = new User(
                 Id: Guid.NewGuid(),
-                Name: userToBeCreated.Name,
                 Email: userToBeCreated.Email,
                 PasswordHash: passwordHash);
 
@@ -48,7 +44,7 @@ namespace Curotec.Application.Services
             return new OkObjectResult(newUser);
         }
         
-        public async Task<ActionResult<string>> LoginUser(UserDto userToBeLogIn, CancellationToken cancellationToken = default)
+        public async Task<ActionResult<LoginResponse>> LoginUser(UserDto userToBeLogIn, CancellationToken cancellationToken = default)
         {
             var userFromDatabase = (await _userRepository
                 .GetByFilterAsync(userDb => userDb.Email.Equals(userToBeLogIn.Email), null, cancellationToken)).FirstOrDefault();
@@ -56,16 +52,15 @@ namespace Curotec.Application.Services
             if (userFromDatabase is null)
                 return new BadRequestObjectResult("User do not exist!");
 
-            if (!userToBeLogIn.IsUsernameOrEmailCorrect(userFromDatabase))
-                return new BadRequestObjectResult("Incorrect username or password!");
+            if (userToBeLogIn.IsEmailOrPasswordIncorrect(userFromDatabase))
+                return new BadRequestObjectResult("Incorrect email or password!");
 
             return new OkObjectResult(CreateToken(userFromDatabase));
         }
 
-        private string CreateToken(User user)
+        private LoginResponse CreateToken(User user)
         {
             List<Claim> claims = new List<Claim> {
-                new Claim(ClaimTypes.Name, user.Name),
                 new Claim(ClaimTypes.Email, user.Email)
             };
 
@@ -85,20 +80,13 @@ namespace Curotec.Application.Services
 
             var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
-            return jwt;
+            return new LoginResponse { Token = jwt, UserId = user.Id };
         }
        
     }
 
     public static class UserExtensions
     {
-        public static async Task<bool> IsUsernameAlreadyTaken(this UserDto userToBeCreated, IBaseRepository<User> userRepository, CancellationToken cancellationToken = default)
-        {
-            var existingUsername = await userRepository
-               .GetByFilterAsync(userDb => userDb.Name.Equals(userToBeCreated.Name), null, cancellationToken);
-            return existingUsername.Count() > 0;
-        }
-
         public static async Task<bool> IsEmailAlreadyTaken(this UserDto userToBeCreated, IBaseRepository<User> userRepository, CancellationToken cancellationToken = default)
         {
             var existingEmail = await userRepository
@@ -106,13 +94,13 @@ namespace Curotec.Application.Services
             return existingEmail.Count() > 0;
         }
 
-        public static bool IsUsernameOrEmailCorrect(this UserDto userToBeLogIn, User userFromDatabase)
+        public static bool IsEmailOrPasswordIncorrect(this UserDto userToBeLogIn, User userFromDatabase)
         {
-            var isUsernameCorrect = userFromDatabase.Name == userToBeLogIn.Name;
+            var isEmailCorrect = userFromDatabase.Email == userToBeLogIn.Email;
             var isPasswordCorrect =
                 BCrypt.Net.BCrypt.Verify(userToBeLogIn.Password, userFromDatabase.PasswordHash);
 
-            return isUsernameCorrect && isPasswordCorrect;
+            return !isEmailCorrect || !isPasswordCorrect;
         } 
         
 

@@ -1,0 +1,15 @@
+@use '@angular/material' as mat;
+
+.todo-item-card {
+  margin: 0.5rem 0;
+  
+  .item-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+}
