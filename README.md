@@ -1,6 +1,7 @@
 ### Technical Stack  
 
   - Backend: .NET 8, C# 12
+  - Frontend: Angular 17
   - Database: SQL Server, Entity Framework Core (Code First)
   - Security: JWT Authentication, BCrypt Password Hashing (with salting)
   - Validation: FluentValidation (Fail Fast approach)
@@ -47,9 +48,9 @@ The application will:
 
 ### Missing features / Room to improvements
 
-Due to time constraints, these areas could be enhanced:
+Due to time constraints, these areas are left to be enhanced:
 
-  - Implement the front end project 
+  - Add more unit testings
   - Add integration tests
   - Implement refresh tokens
   - Enhance documentation (Swagger/OpenAPI)
@@ -67,6 +68,8 @@ Due to time constraints, these areas could be enhanced:
 
 ![image](https://github.com/user-attachments/assets/a5b01e90-0d00-44ea-bc80-88d36d959069)
 
+
+https://github.com/user-attachments/assets/9f640e4b-6127-4737-a0b2-9ff981ad039b
 
 
 
