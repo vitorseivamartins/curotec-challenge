@@ -2,6 +2,7 @@ using Curotec.Application.DTOs;
 using Curotec.Application.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Curotec.API.Controllers
@@ -20,17 +21,17 @@ namespace Curotec.API.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<TodoDto>>> GetAllTodos(CancellationToken cancellationToken)
+        [HttpGet("{userId}")]
+        public async Task<ActionResult<IEnumerable<TodoDto>>> GetAllTodos(Guid userId, CancellationToken cancellationToken)
         {
-            var todos = await _todoService.GetAllTodosAsync(cancellationToken);
+            var todos = await _todoService.GetAllTodosAsync(userId, cancellationToken);
             return Ok(todos);
         }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<TodoDto>> GetTodoById(Guid id, CancellationToken cancellationToken)
+        [HttpGet("{userId}/{id}")]
+        public async Task<ActionResult<TodoDto>> GetTodoById(Guid userId, Guid id, CancellationToken cancellationToken)
         {
-            var todo = await _todoService.GetTodoByIdAsync(id, cancellationToken);
+            var todo = await _todoService.GetTodoByIdAsync(userId, id, cancellationToken);
             if (todo == null)
                 return NotFound();
 
@@ -40,8 +41,7 @@ namespace Curotec.API.Controllers
         [HttpPost]
         public async Task<ActionResult<TodoDto>> CreateTodo(CreateTodoDto createTodoDto, CancellationToken cancellationToken)
         {
-            var createdTodo = await _todoService.CreateTodoAsync(createTodoDto, cancellationToken);
-            return CreatedAtAction(nameof(GetTodoById), new { id = createdTodo.Id }, createdTodo);
+            return await _todoService.CreateTodoAsync(createTodoDto, cancellationToken);
         }
     }
 } 

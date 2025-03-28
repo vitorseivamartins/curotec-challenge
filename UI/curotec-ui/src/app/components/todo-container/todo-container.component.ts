@@ -10,6 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { TodoService } from '../../services/todo.service';
 import { TodoListDto } from '../../models/todo-list.model';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 interface TodoList {
   id?: number | null;
@@ -38,7 +39,8 @@ interface TodoItem {
     MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule
   ],
   templateUrl: './todo-container.component.html',
   styleUrls: ['./todo-container.component.scss']
@@ -50,7 +52,7 @@ export class TodoContainerComponent implements OnInit {
 
   userId = localStorage.getItem('userId')!;
 
-  constructor(private todoService: TodoService) {}
+  constructor(private todoService: TodoService, private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.fetchTodoLists();
@@ -110,9 +112,10 @@ export class TodoContainerComponent implements OnInit {
       items: list.items.map(item => ({ description: item.description, isCompleted: item.isCompleted })),
       userId: this.userId
     }).subscribe(response => {
-      console.log('Todo list created:', response);
+      this.fetchTodoLists();
+      this.snackBar.open('Todo list created successfully!', undefined, { duration: 3000 });
     }, error => {
-      console.error('Error creating todo list:', error);
+      this.snackBar.open('Error creating todo list. Please try again.', undefined, { duration: 3000 });
     });
   }
 }

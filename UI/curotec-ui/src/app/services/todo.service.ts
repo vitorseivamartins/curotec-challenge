@@ -12,12 +12,11 @@ export class TodoService {
   constructor(private http: HttpClient) { }
 
   getTodoLists(userId: string): Observable<TodoListDto[]> {
-    //return this.http.get<TodoListDto[]>(`${this.apiUrl}/user/${userId}`);
-    return this.http.get<TodoListDto[]>(`${this.apiUrl}`);
+    return this.http.get<TodoListDto[]>(`${this.apiUrl}/${userId}`);
   }
 
-  getTodoList(listId: string): Observable<TodoListDto> {
-    return this.http.get<TodoListDto>(`${this.apiUrl}/${listId}`);
+  getTodoList(userId: string, listId: string): Observable<TodoListDto> {
+    return this.http.get<TodoListDto>(`${this.apiUrl}/${userId}/${listId}`);
   }
 
   createTodoList(list: Omit<TodoListDto, 'id'>): Observable<TodoListDto> {

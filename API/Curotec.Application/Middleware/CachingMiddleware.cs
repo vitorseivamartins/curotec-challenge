@@ -19,7 +19,7 @@ public class CachingMiddleware
             var cacheKey = context.Request.Path.ToString();
             if (_cache.TryGetValue(cacheKey, out var cachedResponse))
             {
-                context.Response.ContentType = "application/json";
+                context.Response.ContentType = "application/json; charset=utf-8";
                 await context.Response.WriteAsync(cachedResponse.ToString());
                 return;
             }

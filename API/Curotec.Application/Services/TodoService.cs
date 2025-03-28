@@ -17,17 +17,17 @@ namespace Curotec.Application.Services
             _todoRepository = todoRepository;
         }
 
-        public async Task<IEnumerable<TodoDto>> GetAllTodosAsync(CancellationToken cancellationToken = default)
+        public async Task<IEnumerable<TodoDto>> GetAllTodosAsync(Guid userId, CancellationToken cancellationToken = default)
         {
             var todos = await _todoRepository.GetByFilterAsync(
-                x => true,
+                x => x.UserId == userId,
                 q => q.Include(t => t.Items),
                 cancellationToken);
 
             return todos.Select(MapToDto);
         }
 
-        public async Task<TodoDto> GetTodoByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        public async Task<TodoDto> GetTodoByIdAsync(Guid userId, Guid id, CancellationToken cancellationToken = default)
         {
             var todo = await _todoRepository.GetByIdAsync(id, cancellationToken);
             return todo != null ? MapToDto(todo) : null;

@@ -53,7 +53,7 @@ namespace Curotec.Tests.Services
 
 
             // Act
-            var result = await _todoService.GetAllTodosAsync();
+            var result = await _todoService.GetAllTodosAsync(new Guid());
 
             // Assert
             result.Should().NotBeNull();
@@ -83,7 +83,7 @@ namespace Curotec.Tests.Services
                 .ReturnsAsync(testTodo);
 
             // Act
-            var result = await _todoService.GetTodoByIdAsync(testId);
+            var result = await _todoService.GetTodoByIdAsync(new Guid(), testId);
 
             // Assert
             result.Should().NotBeNull();
@@ -102,7 +102,7 @@ namespace Curotec.Tests.Services
                 .ReturnsAsync((TodoList)null);
 
             // Act
-            var result = await _todoService.GetTodoByIdAsync(invalidId);
+            var result = await _todoService.GetTodoByIdAsync(new Guid(),invalidId);
 
             // Assert
             result.Should().BeNull();
